@@ -1,6 +1,6 @@
-import {EAppRoutes} from '@routes';
 import React, {FC, useCallback} from 'react';
 import {Button, View} from 'react-native';
+import {EAppRoutes} from '@routes';
 import {IHomeScreenProps} from './HomeScreen.types';
 
 export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
