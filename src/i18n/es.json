@@ -1,3 +1,8 @@
 {
-  "home_screen": "Home screen"
+  "home_screen": "Home screen",
+  "on_boarding": {
+    "slide_one": "Access our\nExtented Catalog",
+    "slide_two": "Filter Fighters",
+    "slide_three": "And More..."
+  }
 }
