@@ -20,9 +20,6 @@ export default StyleSheet.create({
     bottom: theme.scaleHeight(310, 124),
     alignSelf: 'center',
     textAlign: 'center',
-    fontSize: theme.scaleFont(25),
-    fontWeight: '400',
-    color: COLORS.WHITE,
   },
   containerDots: {
     position: 'absolute',

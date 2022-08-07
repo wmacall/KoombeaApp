@@ -1,6 +1,7 @@
 import React from 'react';
-import {Alert, Pressable, Text} from 'react-native';
+import {Alert, Pressable} from 'react-native';
 import {translate} from '@i18n';
+import {Typography} from '../Typography';
 import styles from './ButtonSlider.styles';
 
 export const ButtonSliderIOS = () => (
@@ -9,6 +10,6 @@ export const ButtonSliderIOS = () => (
       Alert.alert('Next');
     }}
     style={styles.buttonIOS}>
-    <Text>{translate('on_boarding.lets_go')}</Text>
+    <Typography variant="button">{translate('on_boarding.lets_go')}</Typography>
   </Pressable>
 );

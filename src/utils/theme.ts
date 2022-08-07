@@ -32,5 +32,10 @@ export const theme = {
     }
     return heightToDp(ByOS(ios, android));
   },
-  scaleFont: (ios: number): number => heightToDp(ios),
+  scaleFont: (ios: number, android: number | null = null): number => {
+    if (!android) {
+      return heightToDp(ios);
+    }
+    return heightToDp(ByOS(ios, android));
+  },
 };

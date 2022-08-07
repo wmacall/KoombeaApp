@@ -1,9 +1,9 @@
 import React, {useCallback, useState} from 'react';
-import {FlatList, Image, StatusBar, Text, View} from 'react-native';
+import {FlatList, Image, StatusBar, View} from 'react-native';
 import {COLORS} from '@assets';
 import {SLIDES} from '@constants';
 import {screen} from '@utils';
-import {ButtonSlider} from '@components';
+import {ButtonSlider, Typography} from '@components';
 import styles from './OnBoarding.styles';
 
 export const OnBoardingScreen = () => {
@@ -44,7 +44,9 @@ export const OnBoardingScreen = () => {
         renderItem={({item}) => (
           <View style={styles.containerSlide}>
             <Image style={styles.image} source={item.image} />
-            <Text style={styles.textSlide}>{item.title}</Text>
+            <Typography variant="title" style={styles.textSlide}>
+              {item.title}
+            </Typography>
           </View>
         )}
       />
