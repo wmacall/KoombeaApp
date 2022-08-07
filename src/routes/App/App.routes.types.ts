@@ -1,3 +1,5 @@
+import {IFighter} from '@api';
+
 export enum EAppRoutes {
   HOME_SCREEN = 'HOME_SCREEN',
   DETAIL_SCREEN = 'DETAIL_SCREEN',
@@ -5,5 +7,5 @@ export enum EAppRoutes {
 
 export type TAppStackRouter = {
   [EAppRoutes.HOME_SCREEN]: undefined;
-  [EAppRoutes.DETAIL_SCREEN]: {item: any};
+  [EAppRoutes.DETAIL_SCREEN]: {item: IFighter};
 };

@@ -15,7 +15,7 @@ import styles from './HomeScreen.styles';
 export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [activeUniverse, setActiveUniverse] = useState('');
+  const [activeUniverse, setActiveUniverse] = useState('All');
   const {fighters, isLoadingFighters, onGetFighters} = useFighters();
   const {universes, isLoadingUniverses, onGetUniverses} = useUniverses();
   const onPressCard = useCallback(

@@ -7,14 +7,13 @@ export const useUniverses = () => {
   const [universes, setUniverses] = useState<IUniverses[] | undefined>([]);
 
   const onGetUniverses = useCallback(async () => {
-    setIsLoadingUniverses(true);
-    // try {
-    //   const data = await getUniverses();
-    //   setUniverses(onFormatUniverses(data?.data));
-    //   setIsLoadingUniverses(false);
-    // } catch (error) {
-    //   setIsLoadingUniverses(false);
-    // }
+    try {
+      const data = await getUniverses();
+      setUniverses(onFormatUniverses(data?.data));
+      setIsLoadingUniverses(false);
+    } catch (error) {
+      setIsLoadingUniverses(false);
+    }
   }, []);
 
   return {
