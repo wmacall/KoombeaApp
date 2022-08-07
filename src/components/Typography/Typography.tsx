@@ -30,5 +30,5 @@ export const Typography: FC<ITypographyProps> = ({
     }
   }, [variant]);
 
-  return <Text style={[{color}, onGetStyle(), style]}>{children}</Text>;
+  return <Text style={[onGetStyle(), {color}, style]}>{children}</Text>;
 };

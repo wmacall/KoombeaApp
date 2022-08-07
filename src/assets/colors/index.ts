@@ -8,4 +8,5 @@ export const COLORS = {
   DUSTY_GRAY: '#979797',
   MERCURY: '#E6E6E6',
   ATHENS_GRAY: '#F2F2F7',
+  CONGRESS_BLUE: '#003C7E',
 };
