@@ -5,5 +5,10 @@
     "slide_two": "Filter Fighters",
     "slide_three": "And More...",
     "lets_go": "Let’s Go"
+  },
+  "detail": {
+    "price": "Price: ${{price}}",
+    "rate": "Rate: {{rate}}",
+    "downloads": "Downloads: {{downloads}}"
   }
 }

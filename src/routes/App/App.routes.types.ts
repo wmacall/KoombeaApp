@@ -5,5 +5,5 @@ export enum EAppRoutes {
 
 export type TAppStackRouter = {
   [EAppRoutes.HOME_SCREEN]: undefined;
-  [EAppRoutes.DETAIL_SCREEN]: undefined;
+  [EAppRoutes.DETAIL_SCREEN]: {item: any};
 };
