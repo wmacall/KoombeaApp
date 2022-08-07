@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
-import {Image, Pressable, View} from 'react-native';
+import {Pressable, View} from 'react-native';
+import FastImage from 'react-native-fast-image';
 import {Typography} from '../Typography';
 import {IInfoCardProps} from './InfoCard.types';
 import styles from './InfoCard.styles';
@@ -15,11 +16,12 @@ export const InfoCard: FC<IInfoCardProps> = ({
   onPressCard,
 }) => (
   <Pressable onPress={onPressCard} style={styles.container}>
-    <Image
-      resizeMode="contain"
+    <FastImage
+      resizeMode={FastImage.resizeMode.contain}
       style={styles.image}
       source={{
         uri: imageURL,
+        priority: FastImage.priority.high,
       }}
     />
     <View style={styles.containerInformation}>
