@@ -11,7 +11,7 @@ export const InfoCard: FC<IInfoCardProps> = ({
   price,
   rate,
   downloads,
-  // imageURL,
+  imageURL,
   onPressCard,
 }) => (
   <Pressable onPress={onPressCard} style={styles.container}>
@@ -19,7 +19,7 @@ export const InfoCard: FC<IInfoCardProps> = ({
       resizeMode="contain"
       style={styles.image}
       source={{
-        uri: 'https://assets.stickpng.com/images/584a9b3bb080d7616d298777.png',
+        uri: imageURL,
       }}
     />
     <View style={styles.containerInformation}>
