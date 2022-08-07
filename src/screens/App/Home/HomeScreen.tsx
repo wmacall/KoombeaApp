@@ -1,4 +1,4 @@
-import React, {FC, useCallback, useEffect, useState} from 'react';
+import React, {FC, useCallback, useEffect, useMemo, useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -13,9 +13,10 @@ import {useFighters} from '@hooks';
 import {EAppRoutes} from '@routes';
 import {COLORS} from '@assets';
 import styles from './HomeScreen.styles';
-
 export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeUniverse, setActiveUniverse] = useState('');
   const {fighters, isLoadingFighters, onGetFighters} = useFighters();
   const onPressCard = useCallback(
     item => {
@@ -26,7 +27,23 @@ export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
   const onRefresh = useCallback(() => {
     setIsRefreshing(true);
     onGetFighters();
+    setIsRefreshing(false);
   }, [onGetFighters]);
+
+  const onPressFilter = (index: number, universe: string) => {
+    setActiveIndex(index);
+    setActiveUniverse(universe);
+  };
+
+  const fighterToShow = useMemo(() => {
+    const universeToFilter = activeUniverse !== '' ? activeUniverse : '';
+    if (universeToFilter !== '') {
+      return (
+        fighters?.filter(({universe}) => universe === universeToFilter) || []
+      );
+    }
+    return fighters;
+  }, [fighters, activeUniverse]);
 
   useEffect(() => {
     onGetFighters();
@@ -34,25 +51,28 @@ export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        bounces={false}
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.contentContainerStyle}
-        horizontal>
-        {UNIVERSES.map(({name, objectID}, index) => (
-          <ButtonFilter
-            isFirst={index === 0}
-            isActive={index === 3}
-            name={name}
-            key={`${objectID}-${name}`}
-          />
-        ))}
-      </ScrollView>
+      <View>
+        <ScrollView
+          bounces={false}
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.contentContainerStyle}
+          horizontal>
+          {UNIVERSES.map(({name, objectID}, index) => (
+            <ButtonFilter
+              onPressFilter={() => onPressFilter(index, name)}
+              isFirst={index === 0}
+              isActive={index === activeIndex}
+              name={name}
+              key={`${objectID}-${name}`}
+            />
+          ))}
+        </ScrollView>
+      </View>
       {isLoadingFighters ? (
         <ActivityIndicator color={COLORS.MERCURY} />
       ) : (
         <FlatList
-          data={fighters}
+          data={fighterToShow}
           keyExtractor={({objectID, name}) => `${objectID}-${name}`}
           refreshControl={
             <RefreshControl

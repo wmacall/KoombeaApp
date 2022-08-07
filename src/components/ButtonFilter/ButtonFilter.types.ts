@@ -4,4 +4,5 @@ export interface IButtonFilterProps {
   description?: string;
   isActive?: boolean;
   isFirst?: boolean;
+  onPressFilter: () => void;
 }

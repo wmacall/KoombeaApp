@@ -9,8 +9,10 @@ export const ButtonFilter: FC<IButtonFilterProps> = ({
   name,
   isActive,
   isFirst,
+  onPressFilter,
 }) => (
   <Pressable
+    onPress={onPressFilter}
     style={[
       styles.container,
       isFirst && styles.isFirst,
