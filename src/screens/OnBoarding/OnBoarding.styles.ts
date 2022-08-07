@@ -17,7 +17,7 @@ export default StyleSheet.create({
   },
   textSlide: {
     position: 'absolute',
-    bottom: theme.scaleHeight(124),
+    bottom: theme.scaleHeight(310, 124),
     alignSelf: 'center',
     textAlign: 'center',
     fontSize: theme.scaleFont(25),
@@ -27,7 +27,7 @@ export default StyleSheet.create({
   containerDots: {
     position: 'absolute',
     zIndex: 1,
-    bottom: theme.scaleHeight(56),
+    bottom: theme.scaleHeight(242, 56),
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',

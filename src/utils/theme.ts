@@ -1,5 +1,5 @@
 import {Dimensions, PixelRatio, Platform} from 'react-native';
-import ByOS from './platform';
+import {ByOS} from './platform';
 
 const BASE_WIDTH = ByOS(414, 360);
 const BASE_HEIGHT = ByOS(896, 760);
@@ -20,7 +20,17 @@ const heightToDp = (givenHeight: number): number => {
 };
 
 export const theme = {
-  scaleWidth: (ios: number): number => widthToDp(ios),
-  scaleHeight: (ios: number): number => heightToDp(ios),
+  scaleWidth: (ios: number, android: number | null = null): number => {
+    if (!android) {
+      return widthToDp(ios);
+    }
+    return widthToDp(ByOS(ios, android));
+  },
+  scaleHeight: (ios: number, android: number | null = null): number => {
+    if (!android) {
+      return heightToDp(ios);
+    }
+    return heightToDp(ByOS(ios, android));
+  },
   scaleFont: (ios: number): number => heightToDp(ios),
 };
