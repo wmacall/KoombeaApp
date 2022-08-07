@@ -7,13 +7,14 @@ export const useFighters = () => {
   const [fighters, setFighters] = useState<IFighter[] | undefined>([]);
 
   const onGetFighters = useCallback(async () => {
-    try {
-      const data = await getFighters();
-      setFighters(onFormatFighters(data?.data));
-      setIsLoadingFighters(false);
-    } catch (error) {
-      setIsLoadingFighters(false);
-    }
+    setIsLoadingFighters(true);
+    // try {
+    //   const data = await getFighters();
+    //   setFighters(onFormatFighters(data?.data));
+    //   setIsLoadingFighters(false);
+    // } catch (error) {
+    //   setIsLoadingFighters(false);
+    // }
   }, []);
 
   return {
