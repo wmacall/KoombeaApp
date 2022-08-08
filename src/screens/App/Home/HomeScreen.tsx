@@ -6,19 +6,21 @@ import {
   ScrollView,
   View,
 } from 'react-native';
-import {ButtonFilter, Header, InfoCard} from '@components';
+import {ButtonFilter, EmptyResult, Header, InfoCard} from '@components';
 import {IHomeScreenProps} from './HomeScreen.types';
 import {useFighters, useUniverses} from '@hooks';
 import {EAppRoutes} from '@routes';
 import {COLORS} from '@assets';
 import styles from './HomeScreen.styles';
 import {translate} from '@i18n';
-export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
+export const HomeScreen: FC<IHomeScreenProps> = ({navigation, route}) => {
+  const params = route.params;
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [activeUniverse, setActiveUniverse] = useState('All');
+  const [activeUniverse, setActiveUniverse] = useState('');
   const {fighters, isLoadingFighters, onGetFighters} = useFighters();
   const {universes, isLoadingUniverses, onGetUniverses} = useUniverses();
+
   const onPressCard = useCallback(
     item => {
       navigation.navigate(EAppRoutes.DETAIL_SCREEN, {item});
@@ -36,15 +38,36 @@ export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
     setActiveUniverse(universe);
   };
 
+  const onPressFilterButton = useCallback(() => {
+    navigation.navigate(EAppRoutes.FILTER_SCREEN);
+  }, [navigation]);
+
   const fighterToShow = useMemo(() => {
+    const FILTERS = {
+      rating: params?.rating || 0,
+      sort: params?.sort || '',
+    };
     const universeToFilter = activeUniverse !== '' ? activeUniverse : '';
-    if (universeToFilter !== 'All') {
-      return (
-        fighters?.filter(({universe}) => universe === universeToFilter) || []
-      );
-    }
-    return fighters;
-  }, [fighters, activeUniverse]);
+    return (
+      fighters
+        ?.filter(({universe, rate}) => {
+          if (FILTERS.rating || FILTERS.sort) {
+            return (
+              universe.includes(universeToFilter) && rate >= FILTERS.rating
+            );
+          }
+          return universe.includes(universeToFilter);
+        })
+        .sort((a, b) => {
+          if (FILTERS.sort === 'name') {
+            return a.name > b.name;
+          }
+          if (FILTERS.sort !== 'name') {
+            return a[FILTERS.sort as keyof {}] - b[FILTERS.sort as keyof {}];
+          }
+        }) || []
+    );
+  }, [activeUniverse, fighters, params?.rating, params?.sort]);
 
   useEffect(() => {
     onGetFighters();
@@ -53,7 +76,11 @@ export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Header showFilterButton text={translate('fighters')} />
+      <Header
+        onPressFilterButton={onPressFilterButton}
+        showFilterButton
+        text={translate('fighters')}
+      />
       <View>
         {isLoadingUniverses ? (
           <ActivityIndicator />
@@ -68,7 +95,7 @@ export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
                 onPressFilter={() => onPressFilter(index, name)}
                 isFirst={index === 0}
                 isActive={index === activeIndex}
-                name={name}
+                name={name || 'All'}
                 key={`${objectID}-${name}`}
               />
             ))}
@@ -82,6 +109,7 @@ export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
           <FlatList
             data={fighterToShow}
             keyExtractor={({objectID, name}) => `${objectID}-${name}`}
+            ListEmptyComponent={<EmptyResult />}
             refreshControl={
               <RefreshControl
                 colors={[COLORS.AZURE_RADIANCE]}

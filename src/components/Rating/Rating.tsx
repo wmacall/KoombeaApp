@@ -4,14 +4,25 @@ import {COLORS, StarIcon} from '@assets';
 import {IRatingProps} from './Rating.types';
 import styles from './Rating.styles';
 
-export const Rating: FC<IRatingProps> = ({rating}) => (
-  <Pressable style={styles.container}>
+export const Rating: FC<IRatingProps> = ({
+  rating,
+  width,
+  height,
+  onPressStar,
+  disabled = true,
+}) => (
+  <View style={styles.container}>
     {Array.from({length: 5}).map((_, index) => (
-      <View key={index}>
+      <Pressable
+        disabled={disabled}
+        onPress={() => onPressStar(index + 1)}
+        key={index}>
         <StarIcon
+          width={width}
+          height={height}
           fill={index < rating ? COLORS.SUPER_NOVA : COLORS.DUSTY_GRAY}
         />
-      </View>
+      </Pressable>
     ))}
-  </Pressable>
+  </View>
 );

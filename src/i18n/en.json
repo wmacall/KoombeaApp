@@ -11,5 +11,17 @@
     "price": "Price: ${{price}}",
     "rate": "Rate: {{rate}}",
     "downloads": "Downloads: {{downloads}}"
-  }
+  },
+  "filter_screen": {
+    "title": "Filters",
+    "sort_by": "Sort by",
+    "name": "Name",
+    "price": "Price",
+    "rate": "Rate",
+    "downloads": "Downloads",
+    "filter_by": "Filter by"
+  },
+  "no_data_found": "No data found",
+  "reset": "Reset",
+  "apply": "Apply"
 }

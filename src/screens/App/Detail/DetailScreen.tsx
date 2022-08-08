@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useCallback} from 'react';
 import {View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import {Header, Rating, Typography} from '@components';
@@ -7,12 +7,16 @@ import {COLORS} from '@assets';
 import {IDetailScreenProps} from './DetailScreen.types';
 import styles from './DetailScreen.styles';
 
-export const DetailScreen: FC<IDetailScreenProps> = ({route}) => {
+export const DetailScreen: FC<IDetailScreenProps> = ({route, navigation}) => {
   const fighter = route.params.item;
+
+  const onGoBack = useCallback(() => {
+    navigation.goBack();
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
-      <Header showBackButton text={fighter.name} />
+      <Header onPressGoBack={onGoBack} showBackButton text={fighter.name} />
       <View style={styles.containerContent}>
         <View>
           <Typography variant="h1">{fighter.name}</Typography>

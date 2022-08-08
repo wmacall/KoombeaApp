@@ -32,8 +32,8 @@ export default StyleSheet.create({
   },
   section: {
     color: COLORS.DUSTY_GRAY,
-    fontSize: theme.scaleFont(13),
-    lineHeight: theme.scaleFont(18),
+    fontSize: theme.scaleFont(13, 14),
+    lineHeight: theme.scaleFont(18, 24),
   },
   option: {
     color: COLORS.BLACK,

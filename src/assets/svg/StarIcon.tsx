@@ -2,9 +2,13 @@ import React from 'react';
 import Svg, {Path, SvgProps} from 'react-native-svg';
 import {COLORS} from 'assets/colors';
 
-export const StarIcon = ({fill = COLORS.DUSTY_GRAY}: SvgProps) => {
+export const StarIcon = ({
+  fill = COLORS.DUSTY_GRAY,
+  width = 20,
+  height = 21,
+}: SvgProps) => {
   return (
-    <Svg width={20} height={21} viewBox="0 0 20 21" fill="none">
+    <Svg width={width} height={height} viewBox="0 0 20 21" fill="none">
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

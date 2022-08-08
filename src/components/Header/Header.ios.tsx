@@ -1,17 +1,23 @@
-import React, {FC} from 'react';
+import React, {FC, useCallback} from 'react';
 import {Pressable, SafeAreaView, StatusBar, View} from 'react-native';
 import {Typography} from '../Typography';
 import styles from './Header.styles';
 import {IHeaderProps} from './Header.types';
 import {ArrowLeftIcon, COLORS, FilterIcon} from '@assets';
-import {useNavigation} from '@react-navigation/native';
 
 export const HeaderIOS: FC<IHeaderProps> = ({
   text,
   showBackButton,
   showFilterButton,
+  onPressFilterButton,
+  onPressGoBack,
 }) => {
-  const {goBack} = useNavigation();
+  const onPressBack = useCallback(() => {
+    if (onPressGoBack) {
+      onPressGoBack();
+    }
+  }, [onPressGoBack]);
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.containerIOS}>
@@ -24,12 +30,14 @@ export const HeaderIOS: FC<IHeaderProps> = ({
             },
           ]}>
           {showBackButton ? (
-            <Pressable onPress={goBack} style={styles.backButtonIOS}>
+            <Pressable onPress={onPressBack} style={styles.backButtonIOS}>
               <ArrowLeftIcon />
             </Pressable>
           ) : null}
           {showFilterButton ? (
-            <Pressable style={styles.filterButtonIOS}>
+            <Pressable
+              onPress={onPressFilterButton}
+              style={styles.filterButtonIOS}>
               <FilterIcon fill={COLORS.DODGER_BLUE} />
             </Pressable>
           ) : null}

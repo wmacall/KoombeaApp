@@ -11,4 +11,6 @@ export const COLORS = {
   CONGRESS_BLUE: '#003C7E',
   SUPER_NOVA: '#FFCD00',
   FRENCH_GRAY: '#C6C6C8',
+  SCORPION: '#595959',
+  ALTO: '#DADADA',
 };
