@@ -14,7 +14,7 @@ export const onFormatFighters = (fighters: IFighter[] | undefined) => {
 export const onFormatUniverses = (universes: IUniverses[] | undefined) => {
   const newUniverse = {
     description: 'Custom filter',
-    name: 'All',
+    name: '',
     objectID: 'AF',
   };
 
