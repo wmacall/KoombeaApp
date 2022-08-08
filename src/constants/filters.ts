@@ -17,8 +17,4 @@ export const FILTERS = [
     title: translate('filter_screen.downloads'),
     key: 'downloads',
   },
-  {
-    title: translate('filter_screen.name'),
-    key: 'name',
-  },
 ];

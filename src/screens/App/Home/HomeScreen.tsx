@@ -59,10 +59,10 @@ export const HomeScreen: FC<IHomeScreenProps> = ({navigation, route}) => {
           return universe.includes(universeToFilter);
         })
         .sort((a, b) => {
-          if (FILTERS.sort === 'name') {
-            return a.name > b.name;
+          if (FILTERS.sort === 'name' || FILTERS.sort === 'downloads') {
+            return a[FILTERS.sort as keyof {}] > b[FILTERS.sort as keyof {}];
           }
-          if (FILTERS.sort !== 'name') {
+          if (FILTERS.sort === 'rate' || FILTERS.sort === 'price') {
             return a[FILTERS.sort as keyof {}] - b[FILTERS.sort as keyof {}];
           }
         }) || []
