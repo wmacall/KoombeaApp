@@ -6,12 +6,13 @@ import {
   ScrollView,
   View,
 } from 'react-native';
-import {ButtonFilter, InfoCard} from '@components';
+import {ButtonFilter, Header, InfoCard} from '@components';
 import {IHomeScreenProps} from './HomeScreen.types';
 import {useFighters, useUniverses} from '@hooks';
 import {EAppRoutes} from '@routes';
 import {COLORS} from '@assets';
 import styles from './HomeScreen.styles';
+import {translate} from '@i18n';
 export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -52,6 +53,7 @@ export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <Header showFilterButton text={translate('fighters')} />
       <View>
         {isLoadingUniverses ? (
           <ActivityIndicator />
@@ -88,6 +90,7 @@ export const HomeScreen: FC<IHomeScreenProps> = ({navigation}) => {
                 refreshing={isRefreshing}
               />
             }
+            contentContainerStyle={styles.contentContainerStyleList}
             renderItem={({item}) => (
               <InfoCard onPressCard={() => onPressCard(item)} {...item} />
             )}

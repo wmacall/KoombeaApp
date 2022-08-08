@@ -25,6 +25,10 @@ export const Typography: FC<ITypographyProps> = ({
         return styles.section;
       case 'option':
         return styles.option;
+      case 'h1':
+        return styles.h1;
+      case 'h2':
+        return styles.h2;
       default:
         return styles.default;
     }

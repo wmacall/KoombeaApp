@@ -12,5 +12,7 @@ export interface ITypographyProps {
     | 'detail'
     | 'subtitle'
     | 'section'
-    | 'option';
+    | 'option'
+    | 'h1'
+    | 'h2';
 }

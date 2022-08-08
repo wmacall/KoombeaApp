@@ -12,4 +12,7 @@ export default StyleSheet.create({
     paddingBottom: theme.scaleHeight(12, 10),
     paddingTop: theme.scaleHeight(17, 20),
   },
+  contentContainerStyleList: {
+    paddingBottom: theme.scaleHeight(240, 150),
+  },
 });

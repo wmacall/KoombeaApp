@@ -1,5 +1,5 @@
 import {COLORS} from '@assets';
-import {theme} from '@utils';
+import {ByOS, theme} from '@utils';
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
@@ -10,13 +10,14 @@ export default StyleSheet.create({
   },
   button: {
     color: COLORS.DODGER_BLUE,
-    fontSize: theme.scaleFont(16),
-    lineHeight: theme.scaleFont(20),
+    fontSize: theme.scaleFont(16, 20),
+    lineHeight: theme.scaleFont(20, 25),
     fontWeight: '500',
   },
   header: {
     fontSize: theme.scaleFont(34, 20),
     lineHeight: theme.scaleFont(41, 23),
+    fontWeight: ByOS('700', '500'),
   },
   detail: {
     color: COLORS.BLACK,
@@ -43,5 +44,17 @@ export default StyleSheet.create({
     color: COLORS.WHITE,
     fontSize: theme.scaleFont(15),
     lineHeight: theme.scaleFont(19),
+  },
+  h1: {
+    color: COLORS.BLACK,
+    fontSize: theme.scaleFont(24),
+    lineHeight: theme.scaleFont(24),
+    fontWeight: '700',
+  },
+  h2: {
+    color: COLORS.BLACK,
+    fontSize: theme.scaleFont(22),
+    lineHeight: theme.scaleFont(27),
+    fontWeight: '700',
   },
 });
